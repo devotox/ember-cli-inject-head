@@ -5,17 +5,23 @@ var fs = require('fs');
 
 var Handlebars = require('handlebars');
 
+var inject = false;
 
 module.exports = {
-  name: 'base-head',
+  name: 'ember-cli-inject-head',
 
   contentFor: function(type, config){   
+    if( inject && type === 'head' ) {
+      return inject;
+    }
+  },
+
+  serverMiddleware: function(config) {
     var options = config.options['inject-head'];
 
-    if( type != 'head' || !options) return;
-
-    console.log(options);
-    var head = fs.readFileSync(options.template, 'utf8').toString();
-    return Handlebars.compile(head)(options.context);
+    if( options && options.template ) {
+      var head = fs.readFileSync(options.template, 'utf8').toString();
+      return inject = Handlebars.compile(head)(options.context); 
+    }  
   }
 };
