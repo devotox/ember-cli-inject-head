@@ -1,6 +1,6 @@
 {
   "name": "ember-cli-inject-head",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Simple addon to inject head file that can be manipulated with handlebars",
   "directories": {
     "doc": "doc",
