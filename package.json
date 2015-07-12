@@ -1,24 +1,24 @@
 {
   "name": "ember-cli-inject-head",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Simple addon to inject head file that can be manipulated with handlebars",
   "directories": {
-    "doc": "doc",
-    "test": "tests"
+	"doc": "doc",
+	"test": "tests"
   },
   "repository": "https://github.com/devotox/ember-cli-inject-head.git",
   "engines": {
-    "node": ">= 0.10.0"
+	"node": ">= 0.10.0"
   },
   "author": "Devonte",
   "license": "MIT",
   "keywords": [
-    "ember-addon",
-    "inject-head",
-    "ember-inject-head",
-    "ember-cli-inject-head"
+	"ember-addon",
+	"inject-head",
+	"ember-inject-head",
+	"ember-cli-inject-head"
   ],
   "dependencies": {
-    "handlebars": "^3.0.3"
+	"handlebars": "^3.0.3"
   }
 }
