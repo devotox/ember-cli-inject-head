@@ -16,16 +16,18 @@ module.exports = {
 	}
   },
 
-  serverMiddleware: function(config) {
-	var options = config.options['inject-head'];
+  preBuild: function() {
+	var config = this.app.options;
+	var options = config['inject-head'];
 
 	if( options && options.template ) {
 	  try {
 		var head = fs.readFileSync(options.template, 'utf8').toString();
+		return inject = Handlebars.compile(head)(options.context);
 	  } catch (err) {
+		console.error('!!!!!!!! EMBER CLI INJECT HEAD - ERROR !!!!!!!\n', err);
 		return inject = false;
 	  }
-	  return inject = Handlebars.compile(head)(options.context);
 	}
   }
 };
