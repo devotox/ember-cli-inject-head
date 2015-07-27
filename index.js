@@ -17,8 +17,8 @@ module.exports = {
   },
 
   preBuild: function() {
-	var config = this.app.options;
-	var options = config['inject-head'];
+	var config = (this.app && this.app.options) ? this.app.options : {};
+	var options = (config) ? config['inject-head'] : {};
 
 	if( options && options.template ) {
 	  try {
