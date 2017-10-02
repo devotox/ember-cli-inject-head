@@ -1,5 +1,7 @@
 # ember-cli-inject-head
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/devotox/ember-cli-inject-head.svg)](https://greenkeeper.io/)
+
 A way to inject all meta tags and extra scripts into head tags that can be preprocessed with handlebars
 
 
