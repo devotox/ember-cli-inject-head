@@ -19,6 +19,6 @@
 	"ember-cli-inject-head"
   ],
   "dependencies": {
-	"handlebars": "^3.0.3"
+	"handlebars": "^4.0.10"
   }
 }
