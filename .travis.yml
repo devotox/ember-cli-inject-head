@@ -1,0 +1,37 @@
+language: node_js
+node_js:
+- '4'
+sudo: false
+dist: trusty
+addons:
+  chrome: stable
+cache:
+  directories:
+  - "$HOME/.npm"
+env:
+  matrix:
+  - EMBER_TRY_SCENARIO=ember-lts-2.8
+  - EMBER_TRY_SCENARIO=ember-lts-2.12
+  - EMBER_TRY_SCENARIO=ember-release
+  - EMBER_TRY_SCENARIO=ember-beta
+  - EMBER_TRY_SCENARIO=ember-canary
+  - EMBER_TRY_SCENARIO=ember-default
+  global:
+    secure: KJuj6wPnkxDbI32sYae8hvskH2z2Np20tZtpXmuV9p3SYSmn4+e91GFv18cTO5vUDjibDRVVgiw83TBJ45Hwy181LOHi6LJNha3K7T4w3pzoZToSzV3YnsVEubLiQk0OyFM3MDHqFQhaZ5eT7GG5i+QHKekvoluPQNwOSY93F/QqRMZzgyLINrzAOYvqrnOxmoiPZJR7PyosZZzYWGns24NcmkbRr9FY0OmcZ3tI85joDYoSPhGSrsd+20FRoqRU7N50y/LQwPay2SeEBy7AS1Rpsq3hw+A32SUsC8sl4DgmUXFyodC9C2JPgxDvLXjK1NZzaWMGhIAYUyZ2cPhfNklx2TkfWtUaRgF1abuqacKeKRR/ouLsLfsUh9dteE+E2gvv1Vg6OHXFiHc2OYmV9Vy7JJumUx+4j5wIZZwkYmPHgqeV6z5fjGKaX2/KaJ7FTt9lnHXNvVbmBbNhExiCuqA7inOxS9seco/44w2zGjzJI19JYvvNMzt6dstoD4pv//MuJnSAO9udxK6vklcUPclOmNqp2RoqtmmXxUZT8g51UtnS8MHtt9RIsSRwRfgBokDWUi9ac57FftD+K4w2vhgBCbspJi1/YkK5pGRraGOkdiS1wTYkI3TEZfQFBTQG6k3Y9nEJLdPP7eDBZ0pR4wYHvQjr7zT7sxZ/52AFk0Q=
+matrix:
+  fast_finish: true
+  allow_failures:
+  - env: EMBER_TRY_SCENARIO=ember-canary
+before_install:
+- npm config set spin false
+- npm install -g npm@4
+- npm --version
+- npm install -g greenkeeper-lockfile@1
+before_script: greenkeeper-lockfile-update
+after_script: greenkeeper-lockfile-upload
+script:
+- node_modules/.bin/ember try:one $EMBER_TRY_SCENARIO --skip-cleanup
+notifications:
+  slack:
+    rooms:
+      secure: l4RSA4LtNkOxPwQYstLqkAfWZbSihy2wCiH7mnDmy05g7LUF/6EeKQXOGcdTQWw6rQeoF98lDEcRljvri6zIFTvE8R6Or01ecFVcObYsXdxl/YtGqGG415eNbfTXTKl6BOsvyq7Uhjaz3s9+B+7kILEd2wVCUS7o3p5P+t0/qsfvlK9X//x8KSJNWah7v+2PB5tJBzY0kOg6kssQ6IqbEsS1/kn7mIGAJWGKJzJeCfMrAKhWcfj+Bs6kHS1wIV57b2BQIVz3gO7gJnPHLY3am9edtHpbrXciBEuCeDoqaJSwx5+27xpvzG3j1IWpju9xc8KpQzDJ9BuLVtV4v30IdGjLCtDmM6Yff+xg3c3QiS/Z4XKhV+R5+xrpxx/3taqvGcdiec7Mf5Q1NwTc9buyBjXuEoXmXLAiLYhyeiPzR40JL91EoF2eoToytRQqLPIhg8tN5v9rB3pGerJ+xzmXCerZ+5w3o3EzHFlSY8blK2JeU6zczAwog9OOiGKTGmV0r9Dvt/hc8ac9UGfRHAfs7mFXtGd58NlcSjcQvGFztIGr8FS5UkN06lfuwEYmuniWPZRKKrMuR1HuJDa/NO2nHY3lv/M9kL14lMydxA5FpbIN38/0Grr6FQjeEHZWLjRtbmZyyDuEihmAc5S5rvcyCBR2jaw+mvJ67t7scT1h/N8=
