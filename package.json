@@ -15,11 +15,6 @@
   "scripts": {
     "build": "ember build",
     "start": "ember server",
-    "test": "ember try:each"
-  },
-  "dependencies": {
-    "build": "ember build",
-    "start": "ember server",
     "test": "ember try:each",
     "postrelease": "npm publish",
     "release": "npm version patch",
@@ -29,7 +24,12 @@
     "postversion": "git push && git push --tags",
     "deploy:release": "npm run release; npm run deploy",
     "deploy:setup": "git add -A; git commit -m \"Added ember-cli-github-pages addon\"; git checkout --orphan gh-pages; rm -rf `bash -c \"ls -a | grep -vE '.gitignore|.git|node_modules|bower_components|(^[.]{1,2}/?$)'\"`; touch .gitkeep; git add -A; git commit -m \"initial gh-pages commit\"; git checkout master",
-    "deploy": "ember github-pages:commit --message \"Deploy gh-pages from commit "
+    "deploy": "ember github-pages:commit --message \"Deploy gh-pages from commit $(git rev-parse HEAD)\"; git push origin gh-pages; git checkout master"
+  },
+  "dependencies": {
+    "ember-cli-babel": "^6.6.0",
+    "ember-cli-htmlbars": "^2.0.1",
+    "handlebars": "^4.0.10"
   },
   "devDependencies": {
     "broccoli-asset-rev": "^2.4.5",
