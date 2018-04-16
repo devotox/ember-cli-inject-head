@@ -23,7 +23,7 @@ ember install ember-cli-inject-head
 Usage
 ------------------------------------------------------------------------------
 
-## Options
+### Options
 	"inject-head": {
 		"template": "app/templates/head.hbs",
 		"context": {
@@ -32,7 +32,7 @@ Usage
 		}
 	}
 
-## Sample Template
+### Sample Template
     <meta charset="utf-8">
     <title name="title">{{title}}</title>
     <meta name="description" content="{{description}}">
