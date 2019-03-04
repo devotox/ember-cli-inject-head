@@ -5,10 +5,12 @@ let inject = false;
 
 const fs = require('fs');
 
+const { name } = require('./package');
+
 const Handlebars = require('handlebars');
 
 module.exports = {
-  name: 'ember-cli-inject-head',
+  name,
 
   contentFor: function(type){
     return type === 'head' && inject;
